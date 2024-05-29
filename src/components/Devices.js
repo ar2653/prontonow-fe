@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { Table, Button, Typography } from "antd";
 import { FaComment, FaImage, FaEdit, FaTrash, FaRegEye } from "react-icons/fa";
@@ -88,7 +89,7 @@ const Devices = () => {
   ];
 
   return (
-    <div className="ant-layout">
+    <div className="">
       <div style={{ padding: "24px 16px" }}>
         <Title level={2}>Devices</Title>
       </div>
