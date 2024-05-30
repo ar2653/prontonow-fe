@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, Input, Button, Typography, Space } from 'antd';
+import React from "react";
+import { Form, Input, Button, Typography, Space } from "antd";
 
 const { Title } = Typography;
 
@@ -7,47 +7,27 @@ const Register = () => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    console.log("Received values of form: ", values);
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        backgroundColor: '#f0f2f5',
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '400px',
-          padding: '24px',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        }}
-      >
-        <Title level={2} style={{ textAlign: 'center' }}>Sign Up</Title>
-        <Form
-          form={form}
-          name="register"
-          onFinish={onFinish}
-          layout="vertical"
-        >
+    <div className="landing-page-form">
+      <div className="landing-page-card">
+        <Title level={2} style={{ textAlign: "center" }}>
+          Sign Up
+        </Title>
+        <Form form={form} name="register" onFinish={onFinish} layout="vertical">
           <Form.Item
             name="email"
             label="Email"
             rules={[
               {
-                type: 'email',
-                message: 'The input is not valid E-mail!',
+                type: "email",
+                message: "The input is not valid E-mail!",
               },
               {
                 required: true,
-                message: 'Please input your E-mail!',
+                message: "Please input your E-mail!",
               },
             ]}
           >
@@ -60,7 +40,7 @@ const Register = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: "Please input your password!",
               },
             ]}
             hasFeedback
@@ -71,19 +51,21 @@ const Register = () => {
           <Form.Item
             name="confirm"
             label="Repeat Password"
-            dependencies={['password']}
+            dependencies={["password"]}
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please confirm your password!',
+                message: "Please confirm your password!",
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue('password') === value) {
+                  if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('The passwords do not match!'));
+                  return Promise.reject(
+                    new Error("The passwords do not match!")
+                  );
                 },
               }),
             ]}
@@ -92,11 +74,15 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item>
-            <Space direction="vertical" style={{ width: '100%' }}>
+            <Space direction="vertical" style={{ width: "100%" }}>
               <Button type="primary" htmlType="submit" block>
                 Sign Up
               </Button>
-              <Button type="default" block onClick={() => console.log('Handle login click')}>
+              <Button
+                type="default"
+                block
+                onClick={() => console.log("Handle login click")}
+              >
                 Already have an account?
               </Button>
             </Space>

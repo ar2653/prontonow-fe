@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Layout } from 'antd';
 import Login from './components/Login';
 import Devices from './components/Devices';
@@ -12,9 +12,14 @@ import Navbar from './components/Navbar';
 const { Content } = Layout;
 
 const App = () => {
+  const location = useLocation();
+
+  // Check if the current pathname is '/' or '/login' to hide the navbar
+  const hideNavbar = location.pathname === '/' || location.pathname === '/login';
+
   return (
     <Layout style={{ minHeight: '100vh'}} id="main-layout">
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <Layout className="site-layout" id="1234">
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }} id="1235">
           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }} id="1236">
