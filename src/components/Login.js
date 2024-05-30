@@ -12,23 +12,10 @@ const Login = () => {
 
   return (
     <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        backgroundColor: '#f0f2f5',
-      }}
+    className='landing-page-form'
     >
       <div
-        style={{
-          width: '100%',
-          maxWidth: '400px',
-          padding: '24px',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        }}
+      className='landing-page-card'
       >
         <Title level={2} style={{ textAlign: 'center' }}>Login</Title>
         <Form
