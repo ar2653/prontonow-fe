@@ -12,7 +12,7 @@ const Register = () => {
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     try {
-      const response = await axios.post("http://18.216.213.221/users", {
+      const response = await axios.post("https://18.216.213.221/users", {
         email: values.email,
         password: values.password,
       });
@@ -22,6 +22,10 @@ const Register = () => {
       console.error("Error registering user:", error);
     }
   };
+
+  const handleExistingAccount = () => {
+    navigate("/login");
+  }
 
   return (
     <div className="landing-page-form">
@@ -94,7 +98,7 @@ const Register = () => {
               <Button
                 type="default"
                 block
-                onClick={() => console.log("Handle login click")}
+                onClick={() => handleExistingAccount()}
               >
                 Already have an account?
               </Button>
