@@ -1,14 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Button, Typography } from "antd";
-import { FaComment, FaImage, FaEdit, FaTrash, FaRegEye } from "react-icons/fa";
+import { FaEdit, FaTrash, FaRegEye } from "react-icons/fa";
 import DeviceDrawer from "./Drawer";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 const { Title } = Typography;
 
 const Devices = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedDevice, setSelectedDevice] = useState({});
+  const [devices, setDevices] = useState([]);
+  const navigate = useNavigate();
+  const userId = JSON.parse(localStorage.getItem('userdetails')).user_id;
+
+  useEffect(() => {
+    const fetchDevices = async () => {
+      try {
+        const response = await axios.get(`http://18.216.213.221/devices?user_id=${userId}`);
+        setDevices(response.data.data.devices);
+      } catch (error) {
+        console.error("Error fetching devices:", error);
+      }
+    };
+
+    fetchDevices();
+  }, [userId]);
 
   const handleDrawer = (device) => {
     setSelectedDevice(device);
@@ -18,6 +37,12 @@ const Devices = () => {
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
   };
+
+  const showDeviceDetails = (device) => {
+    console.log(device);
+    navigate(`/devices/model/${device.model}/serialnumber/${device.serialNumber}`)
+  }
+  
 
   const columns = [
     {
@@ -30,26 +55,27 @@ const Devices = () => {
       title: "Device Name",
       dataIndex: "name",
       key: "name",
+      render: (_, record) => <a onClick={() => showDeviceDetails(record)}>{record.name}</a>,
     },
     {
       title: "Serial Number",
       dataIndex: "serialNumber",
       key: "serialNumber",
     },
-    {
-      title: "Request Service",
-      dataIndex: "requestService",
-      key: "requestService",
-      render: () => (
-        <div style={{ display: "flex", gap: "8px" }}>
-          <Button icon={<FaImage />} size="small" />
-          <Button icon={<FaComment />} size="small" />
-          <Button type="primary" size="small">
-            Request
-          </Button>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Request Service",
+    //   dataIndex: "requestService",
+    //   key: "requestService",
+    //   render: () => (
+    //     <div style={{ display: "flex", gap: "8px" }}>
+    //       <Button icon={<FaImage />} size="small" />
+    //       <Button icon={<FaComment />} size="small" />
+    //       <Button type="primary" size="small">
+    //         Request
+    //       </Button>
+    //     </div>
+    //   ),
+    // },
     {
       title: "Service History",
       dataIndex: "serviceHistory",
@@ -70,23 +96,14 @@ const Devices = () => {
     },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "Sample Device 1",
-      serialNumber: "ABCD123456",
-    },
-    {
-      key: "2",
-      name: "Sample Device 2",
-      serialNumber: "EFGH789012",
-    },
-    {
-      key: "3",
-      name: "Sample Device 3",
-      serialNumber: "IJKL345678",
-    },
-  ];
+  const data = devices.map((device, index) => ({
+    key: device.device_id,
+    index: index + 1,
+    name: device.name,
+    serialNumber: device.serial_number,
+    model: device.model,
+    make: device.make,
+  }));
 
   return (
     <div className="">

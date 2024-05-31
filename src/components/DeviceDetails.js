@@ -6,16 +6,16 @@ import { Descriptions, Badge, Typography } from "antd";
 const { Title } = Typography;
 
 const DeviceDetails = () => {
-  const { id } = useParams();
+  const { model_name, serial_number } = useParams();
 
   const navigate = useNavigate();
 
   const handleServiceHistoryClick = () => {
-    navigate(`/devices/${id}/history`);
+    navigate(`/devices/model/${model_name}/serialNumber/${serial_number}/history`);
   };
 
   const handleRequestServiceClick = () => {
-    navigate(`/devices/${id}/requestservice`);
+    navigate(`/devices/model/${model_name}/serialNumber/${serial_number}/requestservice`);
   };
 
 
@@ -23,64 +23,26 @@ const DeviceDetails = () => {
   const deviceDetails = [
     {
       key: "1",
-      label: "Device ID",
-      children: id,
+      label: "Make",
+      children: "Lumenis",
     },
     {
       key: "2",
-      label: "Device Name",
-      children: "Example Device Name",
+      label: "Model",
+      children: "UltraPulse Encore",
     },
     {
       key: "3",
-      label: "Status",
-      children: <Badge status="processing" text="Active" />,
+      label: "Serial Number",
+      children: "008-41198",
     },
     {
       key: "4",
-      label: "Last Service Date",
-      children: "2023-05-24",
+      label: "Date of Manufacture",
+      children: "Sep-05",
     },
     {
       key: "5",
-      label: "Next Service Due",
-      children: "2024-05-24",
-      span: 2,
-    },
-    {
-      key: "6",
-      label: "Firmware Version",
-      children: "v1.2.3",
-    },
-    {
-      key: "7",
-      label: "Battery Level",
-      children: "85%",
-    },
-    {
-      key: "8",
-      label: "Location",
-      children: "Warehouse A",
-    },
-    {
-      key: "9",
-      label: "Config Info",
-      children: (
-        <>
-          CPU: ARM Cortex-A53
-          <br />
-          Memory: 2 GB
-          <br />
-          Storage: 32 GB
-          <br />
-          Network: Wi-Fi, Bluetooth
-          <br />
-        </>
-      ),
-      span: 3,
-    },
-    {
-      key: "10",
       label: "Service History",
       children: (
         <a
@@ -92,7 +54,7 @@ const DeviceDetails = () => {
       ),
     },
     {
-        key: "11",
+        key: "6",
         label: "Request service",
         children: (
           <a
