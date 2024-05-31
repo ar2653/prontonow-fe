@@ -1,11 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { Descriptions, Divider, Typography, Table } from 'antd';
 
 const { Title } = Typography;
 
 const ServiceHistory = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const serviceHistory = [
     {
@@ -135,17 +135,20 @@ const ServiceHistory = () => {
         <Title level={2}>Service History</Title>
       </div>
       {serviceHistory.map((event, index) => (
-        <div key={index}>
+        <div key={index} style={{ overflowX: 'auto', marginBottom: '30px' }}>
           <Descriptions
             bordered
+            size='small'
             column={{
               xs: 1,
-              sm: 2,
-              md: 3,
+              sm: 1,
+              md: 2,
               lg: 3,
               xl: 4,
               xxl: 4,
             }}
+            labelStyle={{ fontWeight: 'bold' }}
+            contentStyle={{ whiteSpace: 'normal' }}
           >
             <Descriptions.Item label="Date of Service">{event.date}</Descriptions.Item>
             <Descriptions.Item label="Make">{event.make}</Descriptions.Item>
@@ -155,10 +158,10 @@ const ServiceHistory = () => {
             <Descriptions.Item label="Software Rev">{event.softwareRev}</Descriptions.Item>
             <Descriptions.Item label="ActiveFX">{event.activeFX}</Descriptions.Item>
             <Descriptions.Item label="TotalFX">{event.totalFX}</Descriptions.Item>
-            <Descriptions.Item label="Comments" span={3}>
+            <Descriptions.Item label="Comments" span={4}>
               {event.comments}
             </Descriptions.Item>
-            <Descriptions.Item label="Calibration & System Checks" span={3}>
+            <Descriptions.Item label="Calibration & System Checks" span={4}>
               <Table
                 columns={calibrationColumns}
                 dataSource={calibrationData}
