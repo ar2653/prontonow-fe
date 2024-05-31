@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Descriptions, Badge, Typography } from "antd";
+import { Descriptions, Typography } from "antd";
 
 const { Title } = Typography;
 
