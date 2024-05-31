@@ -1,13 +1,26 @@
 import React from "react";
 import { Form, Input, Button, Typography, Space } from "antd";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
 const Register = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log("Received values of form: ", values);
+    try {
+      const response = await axios.post("http://18.216.213.221/users", {
+        email: values.email,
+        password: values.password,
+      });
+      console.log("User registered successfully:", response.data);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
   };
 
   return (

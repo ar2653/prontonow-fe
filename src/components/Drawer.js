@@ -17,8 +17,8 @@ const DeviceDrawer = ({ isOpen, onClose, device }) => {
       placement="right"
       closable={false}
       onClose={onClose}
-      visible={isOpen}
-      width={800}
+      open={isOpen}
+      width={500}
     >
       <div style={{ marginBottom: 20 }}>
         <Text strong>Device Name:</Text>

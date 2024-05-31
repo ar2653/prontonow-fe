@@ -1,13 +1,33 @@
 import React from 'react';
 import { Form, Input, Button, Typography, Space } from 'antd';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
+
 
 const { Title } = Typography;
 
 const Login = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
+
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+    try {
+      const response = await axios.post('http://18.216.213.221/login', {
+        email: values.email,
+        password: values.password,
+      });
+      if(response.data) {
+        const userObject = {isLoggedId: true, user_id: response.data.user_id};
+        localStorage.setItem('userdetails', JSON.stringify(userObject))
+      }
+      console.log('User logged in successfully:', response.data);
+      navigate('/devices')
+    } catch (error) {
+      console.error('Error logging in user:', error);
+    }
   };
 
   return (
