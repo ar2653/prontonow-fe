@@ -7,7 +7,7 @@ const { Title } = Typography;
 const { TextArea } = Input;
 
 const RequestService = () => {
-  const { id } = useParams();
+  const { serial_number } = useParams();
   const navigate = useNavigate();
 
   const onFinish = (values) => {
@@ -26,7 +26,7 @@ const RequestService = () => {
         name="request_service"
         layout="vertical"
         onFinish={onFinish}
-        initialValues={{ deviceId: id }}
+        initialValues={{ deviceId: serial_number }}
       >
         <Form.Item label="Device ID" name="deviceId">
           <Input disabled />

@@ -12,7 +12,7 @@ const Register = () => {
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
     try {
-      const response = await axios.post("http://18.216.213.221/users", {
+      const response = await axios.post("https://18.216.213.221/users", {
         email: values.email,
         password: values.password,
       });
