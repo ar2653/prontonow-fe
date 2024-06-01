@@ -15,7 +15,7 @@ const Login = () => {
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
     try {
-      const response = await axios.post('https://pronto.ankushranapure.com/login', {
+      const response = await axios.post('http://44.198.208.75/login', {
         email: values.email,
         password: values.password,
       });
