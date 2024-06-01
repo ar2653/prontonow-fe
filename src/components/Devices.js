@@ -19,7 +19,7 @@ const Devices = () => {
   useEffect(() => {
     const fetchDevices = async () => {
       try {
-        const response = await axios.get(`https://pronto.ankushranapure.com/devices?user_id=${userId}`);
+        const response = await axios.get(`http://44.198.208.75/devices?user_id=${userId}`);
         setDevices(response.data.data.devices);
       } catch (error) {
         console.error("Error fetching devices:", error);
