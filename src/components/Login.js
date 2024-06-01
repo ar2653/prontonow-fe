@@ -19,7 +19,7 @@ const Login = () => {
         email: values.email,
         password: values.password,
       });
-      if(response.data) {
+      if(response.data.user_id) {
         const userObject = {isLoggedId: true, user_id: response.data.user_id};
         localStorage.setItem('userdetails', JSON.stringify(userObject))
       }
